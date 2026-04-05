@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Question</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
@@ -16,24 +18,28 @@
     .container {
       text-align: center;
       background: white;
-      padding: 40px;
-      border-radius: 15px;
+      padding: 30px 20px;
+      border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 350px;
     }
 
     h2 {
       margin-bottom: 30px;
       color: #333;
+      font-size: 22px;
     }
 
     button {
-      padding: 15px 30px;
+      width: 100%;
+      padding: 18px;
       font-size: 18px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
-      margin: 10px;
-      transition: all 0.3s ease;
+      margin: 10px 0;
+      transition: all 0.25s ease;
     }
 
     /* YES = red + tricky 😈 */
@@ -49,8 +55,8 @@
       color: white;
     }
 
-    #noBtn:hover {
-      background-color: #43a047;
+    #noBtn:active {
+      transform: scale(0.96);
     }
   </style>
 </head>
@@ -65,20 +71,24 @@
 <script>
 let scale = 1;
 
-/* YES runs away + shrinks */
+/* YES shrinks + moves */
 function goYes() {
   const btn = document.getElementById("yesBtn");
 
-  scale *= 0.7;
+  scale *= 0.75;
   btn.style.transform = `scale(${scale})`;
 
-  btn.style.left = (Math.random() * 200 - 100) + "px";
-  btn.style.top = (Math.random() * 200 - 100) + "px";
+  btn.style.left = (Math.random() * 150 - 75) + "px";
+  btn.style.top = (Math.random() * 150 - 75) + "px";
 }
 
-/* NO opens WhatsApp */
+/* NO tries to close page */
 function goNo() {
-  window.location.href = "https://wa.me/1234567890";
+  window.open('', '_self');
+  window.close();
+
+  // fallback (mobile browsers often block close)
+  document.body.innerHTML = "<h2 style='text-align:center;margin-top:50px;'>Okay 🙂</h2>";
 }
 </script>
 
