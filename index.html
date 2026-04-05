@@ -76,10 +76,22 @@ let messages = [
 
 let index = 0;
 
+// 🎵 preload sound
+const awwSound = new Audio("https://www.soundjay.com/human/sounds/aww-01.mp3");
+
 function moveYes() {
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
   const title = document.getElementById("title");
+
+  // 🔊 play sound
+  awwSound.currentTime = 0;
+  awwSound.play();
+
+  // 📳 vibrate (if supported)
+  if (navigator.vibrate) {
+    navigator.vibrate(100);
+  }
 
   // shrink
   scale *= 0.8;
